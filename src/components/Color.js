@@ -1,11 +1,14 @@
 import {connect} from 'react-redux';
 function Color(props) {
-  console.log(props);
+
     return ( 
         <>
+        {props.color.map((item,index)=>(
+          <div key={index} style={{backgroundColor:item.colorCode,color:"gray"}} className="color col-4">{item.colorName}</div>
+        ))}
+
      
         </>
-        // <div style={{backgroundColor:props.color.colorCode,color:"gray"}} className="color col-4">{props.color.colorName}</div>
      );
 }
 

@@ -1,15 +1,22 @@
 import { useFormik } from "formik";
 import Color from "./Color";
 import {setColor} from "../store/actions/color"
-import {connect} from "react-redux"
-function Settings(props) {
+import { useDispatch, useSelector } from "react-redux";
+import GroupName from "./GroupName";
+
+function Settings() {
+ 
+  const state = useSelector(state=>state)
+  const dispatch = useDispatch()
+
   const formik = useFormik({
     initialValues: {
       colorName: "",
       colorCode: "",
     },
     onSubmit: (values) => {
-        props.setColorDispatch(values)
+      dispatch(setColor(values));
+      formik.resetForm()
     },
   });
   return (
@@ -47,14 +54,18 @@ function Settings(props) {
       <div className="right-setting col-8">
         <div className="row">
           <Color />
+          {state.colorReducer.color.length === 6 && <GroupName/> }
         </div>
       </div>
     </div>
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  setColorDispatch: (color) => dispatch(setColor(color)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   setColorDispatch: (color) => dispatch(setColor(color)),
+// });
 
-export default connect(null,mapDispatchToProps)(Settings) ;
+
+
+
+export default Settings;

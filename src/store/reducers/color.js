@@ -1,5 +1,4 @@
-import {SETCOLOR} from "../types/color"
-
+import { SETCOLOR } from "../types/color";
 const initialState = {
   color: [],
 };
@@ -7,7 +6,7 @@ const initialState = {
 export const colorReducer = (state = initialState, action) => {
   switch (action.type) {
     case SETCOLOR:
-      return { ...state, color: action.payload };
+      return { ...state, color: [...state.color, action.payload] };
     default:
       return state;
   }
