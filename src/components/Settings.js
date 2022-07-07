@@ -46,7 +46,7 @@ function Settings() {
               value={formik.values.colorCode}
             />
           </div>
-          <button className="btn btn-primary mt-3" type="submit">
+          <button disabled={state.colorReducer.color.length === 6 && true} className="btn btn-primary mt-3" type="submit">
             Submit
           </button>
         </form>
